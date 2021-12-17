@@ -1,29 +1,16 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { HttpClientModule } from '@angular/common/http'
 
-import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { TaskViewComponent } from './components/task-view/task-view.component';
-
-// Create routes
-const appRoutes: Routes = [
-  {
-    // Setup it in the root path
-    path: '',
-    component: TaskViewComponent,
-  },
-];
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { TaskViewComponent } from './components/task-view/task-view.component'
+import { AddNewListComponent } from './components/add-new-list/add-new-list.component'
 
 @NgModule({
-  declarations: [AppComponent, TaskViewComponent],
-  imports: [
-    BrowserModule,
-    // import HttpClientModule after BrowserModule.
-    HttpClientModule,
-    RouterModule.forRoot(appRoutes),
-  ],
+  declarations: [AppComponent, TaskViewComponent, AddNewListComponent],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
