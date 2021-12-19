@@ -12,7 +12,11 @@ const List = require('../models/list.model')
  */
 router.get('/', async (req, res, next) => {
   try {
-    const lists = await List.find({})
+    let select = ''
+    if (req.query.fieldName) {
+      select = req.query.fieldName
+    }
+    const lists = await List.find({}, select)
     res.send(lists)
   } catch (error) {
     res.status(500).send({ status: 'failure', message: error.message })
@@ -82,8 +86,9 @@ router.delete('/:listId', async (req, res, next) => {
     // Delete the list
     const deletedList = await List.findByIdAndDelete(_id)
 
-    if (!deletedList)
+    if (!deletedList) {
       return res.send({ status: 'failure', message: 'List Not Found ❌' })
+    }
 
     res.send(deletedList)
   } catch (error) {
