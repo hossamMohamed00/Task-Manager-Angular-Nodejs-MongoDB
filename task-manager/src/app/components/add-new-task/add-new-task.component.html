@@ -1,1 +1,27 @@
-<p>add-new-task works!</p>
+<div class="centered-content">
+  <div class="modal-box">
+    <h1 class="title">Add New Task 📑</h1>
+
+    <input
+      type="text"
+      placeholder="Enter Task Description ✍🏻"
+      class="input has-background-light is-medium"
+      minlength="2"
+      #taskTitle
+    />
+    <!--Add template reference to access the title-->
+    <br />
+    <br />
+    <div class="buttons is-centered">
+      <button class="button is-medium is-danger" routerLink="../">
+        Go BACK 👈🏻
+      </button>
+      <button
+        class="button is-primary has-text-white is-medium"
+        (click)="createNewTask(taskTitle.value)"
+      >
+        ADD ➕
+      </button>
+    </div>
+  </div>
+</div>

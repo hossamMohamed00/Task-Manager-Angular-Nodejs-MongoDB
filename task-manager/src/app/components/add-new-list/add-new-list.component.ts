@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { ListService } from '../../services/list.service'
-
+import { List } from '../../models/list.model'
 @Component({
   selector: 'app-add-new-list',
   templateUrl: './add-new-list.component.html',
@@ -15,8 +15,8 @@ export class AddNewListComponent implements OnInit {
 
   createNewList(title: string = 'Title 🤷‍♀️'): void {
     // Create the list
-    this.listService.createList(title).subscribe((response: any) => {
-      const uri = `/lists/${response._id}`
+    this.listService.createList(title).subscribe((list: List) => {
+      const uri = `/lists/${list._id}`
 
       // Redirect the user with the new list id
       this.router.navigateByUrl(uri)

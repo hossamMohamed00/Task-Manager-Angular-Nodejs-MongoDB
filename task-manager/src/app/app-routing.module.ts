@@ -28,7 +28,7 @@ const routes: Routes = [
   },
   {
     // Setup it in the add-new-list page
-    path: 'add-new-task',
+    path: 'lists/:listId/add-new-task',
     component: AddNewTaskComponent
   }
 ]

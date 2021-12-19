@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class HttpRequestsService {
   /* Properties */
-  readonly URL;
+  readonly URL
 
   /* Constructor */
   constructor(private httpClient: HttpClient) {
-    this.URL = 'http://localhost:3000';
+    this.URL = 'http://localhost:3000'
   }
 
   /* Methods */
@@ -20,8 +20,18 @@ export class HttpRequestsService {
    */
   get(uri: string) {
     // Send the request
-    const fullUrl = `${this.URL}/${uri}`;
-    return this.httpClient.get(fullUrl);
+    const fullUrl = `${this.URL}/${uri}`
+    return this.httpClient.get(fullUrl)
+  }
+
+  /**
+   * @purpose Send http get request
+   * @param uri - The resource to send the request to it
+   */
+  getSpecificField(uri: string, field: string) {
+    // Send the request
+    const fullUrl = `${this.URL}/${uri}?fieldName=${field}`
+    return this.httpClient.get(fullUrl)
   }
 
   /**
@@ -31,8 +41,8 @@ export class HttpRequestsService {
    */
   post(uri: string, payload: Object) {
     // Send the request
-    const fullUrl = `${this.URL}/${uri}`;
-    return this.httpClient.post(fullUrl, payload);
+    const fullUrl = `${this.URL}/${uri}`
+    return this.httpClient.post(fullUrl, payload)
   }
 
   /**
@@ -42,8 +52,8 @@ export class HttpRequestsService {
    */
   patch(uri: string, payload: Object) {
     // Send the request
-    const fullUrl = `${this.URL}/${uri}`;
-    return this.httpClient.patch(fullUrl, payload);
+    const fullUrl = `${this.URL}/${uri}`
+    return this.httpClient.patch(fullUrl, payload)
   }
 
   /**
@@ -52,7 +62,7 @@ export class HttpRequestsService {
    */
   delete(uri: string) {
     // Send the request
-    const fullUrl = `${this.URL}/${uri}`;
-    return this.httpClient.delete(fullUrl);
+    const fullUrl = `${this.URL}/${uri}`
+    return this.httpClient.delete(fullUrl)
   }
 }

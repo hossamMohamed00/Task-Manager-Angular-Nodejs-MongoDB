@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs'
 import { HttpRequestsService } from '../services/http-requests.service'
 
 @Injectable({
@@ -11,7 +12,7 @@ export class ListService {
    * @purpose Create new list by send get request to the server
    * @param title - The list title
    */
-  createList(title: string) {
+  createList(title: string): Observable<any> {
     // Send request to the server
     return this.httpRequestService.post('lists', { title })
   }
@@ -23,5 +24,9 @@ export class ListService {
   getLists() {
     // Send request to the server
     return this.httpRequestService.get('lists')
+  }
+
+  getListsId(): Observable<Object> {
+    return this.httpRequestService.getSpecificField('lists', '_id')
   }
 }
