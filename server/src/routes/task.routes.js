@@ -60,11 +60,12 @@ router.patch('/:listId/tasks/:taskId', async (req, res, next) => {
     const listId = req.params.listId
     const taskId = req.params.taskId
     // Extract the title from the body
-    const title = req.body.title
     // Update the task
     const updatedTask = await Task.findOneAndUpdate(
       { _id: taskId, listId },
-      { title },
+      {
+        $set: req.body
+      },
       { new: true }
     )
 
@@ -90,8 +91,9 @@ router.delete('/:listId/tasks/:taskId', async (req, res, next) => {
     // Delete the task
     const deletedTask = await Task.findOneAndDelete({ _id: taskId, listId })
 
-    if (!deletedTask)
+    if (!deletedTask) {
       return res.send({ status: 'failure', message: 'Task Not Found ❌' })
+    }
 
     res.send(deletedTask)
   } catch (error) {
