@@ -1,3 +1,4 @@
+import { List } from './../../models/list.model'
 import { Component, OnInit } from '@angular/core'
 import { ListService } from '../../services/list.service'
 
@@ -8,7 +9,7 @@ import { ListService } from '../../services/list.service'
 })
 export class ListViewComponent implements OnInit {
   /* properties */
-  lists: any[] = []
+  lists: List[] = []
   canAddNewList: boolean = true
   // Define maximum number of list as static
   static MAXIMUM_LIST_SIZE_ALLOWED: number = 10
@@ -28,7 +29,7 @@ export class ListViewComponent implements OnInit {
    * @purpose - This method is used to read all the available lists from the serve
    */
   showAvailableLists() {
-    this.listService.getLists().subscribe((lists: any): void => {
+    this.listService.getLists().subscribe((lists: List[]): void => {
       // Set the lists property
       this.lists = lists
 

@@ -21,7 +21,7 @@ export class ListService {
    * @purpose Get all lists
    * @return: All the lists in the db for this user
    */
-  getLists() {
+  getLists(): Observable<any> {
     // Send request to the server
     return this.httpRequestService.get('lists')
   }

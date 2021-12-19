@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Params } from '@angular/router'
 import { TaskService } from '../../services/task.service'
-
+import { Task } from '../../models/task.model'
 @Component({
   selector: 'app-task-view',
   templateUrl: './task-view.component.html',
@@ -9,7 +9,7 @@ import { TaskService } from '../../services/task.service'
 })
 export class TaskViewComponent implements OnInit {
   /* properties */
-  tasks: any[] = []
+  tasks: Task[] = []
 
   /* constructor */
   constructor(
@@ -34,10 +34,22 @@ export class TaskViewComponent implements OnInit {
       // If there are listId provided, so get its tasks
       if (listId) {
         // Get all the tasks of this list
-        this.taskService.getTasks(listId).subscribe((tasks: any) => {
+        this.taskService.getTasks(listId).subscribe((tasks: Task[]) => {
           this.tasks = tasks
         })
       }
+    })
+  }
+
+  /**
+   * @purpose - This method handel user click on task, to toggle it
+   * @param task - The task to toggle it
+   */
+  onTaskClick(task: Task) {
+    // Call toggleComplete from the service
+    this.taskService.toggleComplete(task).subscribe(() => {
+      // Toggle the completed value in the view
+      task.completed = !task.completed
     })
   }
 }
