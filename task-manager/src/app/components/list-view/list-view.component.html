@@ -1,0 +1,31 @@
+<div class="sidebar has-background-white">
+  <h1 class="title has-text-primary">My Lists 📃</h1>
+
+  <div class="list-menu">
+    <a
+      class="list-menu-item"
+      *ngFor="let list of lists"
+      [routerLink]="['/lists', list._id]"
+      routerLinkActive="is-active"
+    >
+      <p>{{ list.title }}</p>
+    </a>
+  </div>
+
+  <button
+    class="button is-primary has-text-white"
+    routerLink="/add-new-list"
+    *ngIf="canAddNewList"
+  >
+    Add List 📃
+  </button>
+
+  <button
+    class="button is-danger has-text-white"
+    routerLink="/add-new-list"
+    *ngIf="!canAddNewList"
+    disabled
+  >
+    Maximum Reached ✋🏻
+  </button>
+</div>

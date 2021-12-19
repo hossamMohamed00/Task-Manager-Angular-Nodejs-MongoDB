@@ -1,0 +1,42 @@
+@import '../../../main-styles.scss';
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+
+  width: 250px;
+  background: white;
+  height: 100%;
+  padding: 42px;
+
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.list-menu {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  flex-grow: 1;
+
+  .list-menu-item {
+    display: flex;
+
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+
+    width: 100%;
+    color: #5f5f5f;
+    margin-bottom: 5px;
+
+    &:hover {
+      background: $light;
+    }
+
+    &.is-active {
+      background-color: $active-list;
+      color: WHITE;
+    }
+  }
+}

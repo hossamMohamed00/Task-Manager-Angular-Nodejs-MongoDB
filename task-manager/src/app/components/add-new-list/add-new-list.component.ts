@@ -10,6 +10,7 @@ import { ListService } from '../../services/list.service'
 export class AddNewListComponent implements OnInit {
   constructor(private listService: ListService, private router: Router) {}
 
+  // A lifecycle hook that is called after Angular has initialized all data-bound properties of a directive.
   ngOnInit(): void {}
 
   createNewList(title: string = 'Title 🤷‍♀️'): void {

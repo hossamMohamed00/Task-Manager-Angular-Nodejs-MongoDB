@@ -1,3 +1,5 @@
+@import '../../../main-styles.scss';
+
 .modal-box {
   min-height: 200;
   width: 100%;
@@ -5,4 +7,9 @@
   background: white;
   border-radius: 5px;
   padding: 35px;
+}
+
+.title {
+  color: $primary;
+  text-align: center;
 }
