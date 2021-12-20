@@ -4,7 +4,8 @@ const bodyParser = require('body-parser')
 require('./db/mongoose')
 
 const listRoutes = require('./routes/list.routes')
-const tasksRoutes = require('./routes/task.routes')
+const taskRoutes = require('./routes/task.routes')
+const userRoutes = require('./routes/user.routes')
 const app = express()
 
 // Parse the request body
@@ -29,7 +30,8 @@ app.use(morgan('dev'))
 
 // Init routes
 app.use('/lists', listRoutes)
-app.use('/lists', tasksRoutes)
+app.use('/lists', taskRoutes)
+app.use('/users', userRoutes)
 
 // Home route
 app.get('/', (req, res) => res.send('Hello World!'))
