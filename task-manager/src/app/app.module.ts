@@ -8,7 +8,8 @@ import { TaskManagerViewComponent } from './components/task-manager-view/task-ma
 import { AddNewListComponent } from './components/add-new-list/add-new-list.component'
 import { ListViewComponent } from './components/list-view/list-view.component';
 import { TaskViewComponent } from './components/task-view/task-view.component';
-import { AddNewTaskComponent } from './components/add-new-task/add-new-task.component'
+import { AddNewTaskComponent } from './components/add-new-task/add-new-task.component';
+import { LoginComponent } from './components/login/login.component'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AddNewTaskComponent } from './components/add-new-task/add-new-task.comp
     AddNewListComponent,
     ListViewComponent,
     TaskViewComponent,
-    AddNewTaskComponent
+    AddNewTaskComponent,
+    LoginComponent
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],

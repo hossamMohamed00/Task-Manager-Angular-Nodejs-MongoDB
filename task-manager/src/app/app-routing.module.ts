@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router'
 import { TaskManagerViewComponent } from './components/task-manager-view/task-manager-view.component'
 import { AddNewListComponent } from './components/add-new-list/add-new-list.component'
 import { AddNewTaskComponent } from './components/add-new-task/add-new-task.component'
+import { LoginComponent } from './components/login/login.component'
 
 // Create routes
 const routes: Routes = [
@@ -11,6 +12,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'lists',
     pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     // Setup it in the add-new-list page
