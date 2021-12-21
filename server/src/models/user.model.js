@@ -9,6 +9,13 @@ const jwtSecret = 'jsonwebtokensecret'
 
 // Create user schema
 const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    require: true,
+    minlength: 2,
+    maxlength: 64,
+    trim: true
+  },
   email: {
     type: String,
     required: true,
@@ -61,7 +68,7 @@ userSchema.methods.generateAccessAuthToken = function () {
     jwt.sign(
       { _id: user._id.toHexString() },
       jwtSecret,
-      { expiresIn: '10s' },
+      { expiresIn: '15m' },
       (err, token) => {
         if (!err) {
           resolve(token)
@@ -226,9 +233,8 @@ const saveSessionToDatabase = (user, refreshToken) => {
  * @returns refresh token expire time
  */
 const generateRefreshTokenExpiryTime = () => {
-  // const daysUntilExpire = '10'
-  // const secondsUntilExpire = daysUntilExpire * 24 * 60 * 60
-  const secondsUntilExpire = 11
+  const daysUntilExpire = '10'
+  const secondsUntilExpire = daysUntilExpire * 24 * 60 * 60
   return Date.now() / 1000 + secondsUntilExpire
 }
 
