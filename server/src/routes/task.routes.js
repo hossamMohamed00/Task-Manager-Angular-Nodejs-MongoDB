@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router()
 // Load the Task model
 const Task = require('../models/task.model')
+const List = require('../models/list.model')
+// Load the auth middleware
+const authRequest = require('../middleware/auth.middleware')
 
 /* Routes Handlers */
 /**
@@ -11,7 +14,7 @@ const Task = require('../models/task.model')
  * @params : List Id to get its tasks
  * @return: Array of tasks of the given list
  */
-router.get('/:listId/tasks', async (req, res, next) => {
+router.get('/:listId/tasks', authRequest, async (req, res, next) => {
   try {
     const listId = req.params.listId
     const tasks = await Task.find({ listId })
@@ -28,10 +31,24 @@ router.get('/:listId/tasks', async (req, res, next) => {
  * @purpose : create new task in specified list
  * @return: The new task
  */
-router.post('/:listId/tasks', async (req, res, next) => {
+router.post('/:listId/tasks', authRequest, async (req, res, next) => {
   try {
     // Extract the listId from the params
     const listId = req.params.listId
+    const _userId = req.user_id
+
+    // Check first if the logged in user has the right permission to add tasks in this list.
+    const list = await List.findOne({ _id: listId, _userId })
+
+    // If no list == error
+    if (!list) {
+      return res.status(400).send({
+        status: 'failure',
+        message:
+          'You do not have the right permissions to add tasks in this list ❌'
+      })
+    }
+
     // Extract the title from the body
     const title = req.body.title
     // create new list object
@@ -54,12 +71,26 @@ router.post('/:listId/tasks', async (req, res, next) => {
  * @purpose : Update task data
  * @return: Task with the updates
  */
-router.patch('/:listId/tasks/:taskId', async (req, res, next) => {
+router.patch('/:listId/tasks/:taskId', authRequest, async (req, res, next) => {
   try {
-    // Extract the listId and taskId from the params
+    // Extract the listId from the params
     const listId = req.params.listId
+    const _userId = req.user_id
+
+    // Check first if the logged in user has the right permission to add tasks in this list.
+    const list = await List.findOne({ _id: listId, _userId })
+
+    // If no list == error
+    if (!list) {
+      return res.status(400).send({
+        status: 'failure',
+        message:
+          'You do not have the right permissions to add tasks in this list ❌'
+      })
+    }
+
+    // Extract the taskId from the params
     const taskId = req.params.taskId
-    // Extract the title from the body
     // Update the task
     const updatedTask = await Task.findOneAndUpdate(
       { _id: taskId, listId },
@@ -83,10 +114,25 @@ router.patch('/:listId/tasks/:taskId', async (req, res, next) => {
  * @purpose : Delete task of specified list
  * @return: Return the delete response
  */
-router.delete('/:listId/tasks/:taskId', async (req, res, next) => {
+router.delete('/:listId/tasks/:taskId', authRequest, async (req, res, next) => {
   try {
-    // Extract the id from the params
+    // Extract the listId from the params
     const listId = req.params.listId
+    const _userId = req.user_id
+
+    // Check first if the logged in user has the right permission to add tasks in this list.
+    const list = await List.findOne({ _id: listId, _userId })
+
+    // If no list == error
+    if (!list) {
+      return res.status(400).send({
+        status: 'failure',
+        message:
+          'You do not have the right permissions to add tasks in this list ❌'
+      })
+    }
+
+    // Extract the taskId from the params
     const taskId = req.params.taskId
     // Delete the task
     const deletedTask = await Task.findOneAndDelete({ _id: taskId, listId })
