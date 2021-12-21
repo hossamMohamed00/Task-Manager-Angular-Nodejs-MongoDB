@@ -65,4 +65,17 @@ export class HttpRequestsService {
     const fullUrl = `${this.URL}/${uri}`
     return this.httpClient.delete(fullUrl)
   }
+
+  /*-----------Auth Requests----------------*/
+  login(email: string, password: string) {
+    // Send the request
+    const fullUrl = `${this.URL}/users/login`
+    return this.httpClient.post(
+      fullUrl,
+      { email, password },
+      {
+        observe: 'response'
+      }
+    )
+  }
 }

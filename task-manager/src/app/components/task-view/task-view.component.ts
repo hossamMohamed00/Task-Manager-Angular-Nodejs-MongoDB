@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Params } from '@angular/router'
-import { TaskService } from '../../services/task.service'
+import { TaskService } from '../../services/task/task.service'
 import { Task } from '../../models/task.model'
 @Component({
   selector: 'app-task-view',
@@ -9,7 +9,7 @@ import { Task } from '../../models/task.model'
 })
 export class TaskViewComponent implements OnInit {
   /* properties */
-  tasks: Task[] = []
+  tasks: Task[] = undefined!
 
   /* constructor */
   constructor(
