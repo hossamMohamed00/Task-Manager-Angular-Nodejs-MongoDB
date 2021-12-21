@@ -1,0 +1,27 @@
+<div class="centered-content">
+  <div class="modal-box">
+    <h1 class="title">Update List 📑</h1>
+
+    <input
+      type="text"
+      placeholder="Enter new  List title 📑"
+      class="input has-background-light is-medium"
+      minlength="2"
+      #listTitle
+    />
+    <!--Add template reference to access the title-->
+    <br />
+    <br />
+    <div class="buttons is-centered">
+      <button class="button is-medium is-danger" routerLink="../">
+        Cancel ✖
+      </button>
+      <button
+        class="button is-primary has-text-white is-medium"
+        (click)="onUpdateBtnClicked(listTitle.value)"
+      >
+        Save 💾
+      </button>
+    </div>
+  </div>
+</div>

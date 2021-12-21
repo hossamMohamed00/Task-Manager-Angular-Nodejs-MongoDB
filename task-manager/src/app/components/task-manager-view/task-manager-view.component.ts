@@ -14,7 +14,7 @@ export class TaskManagerViewComponent implements OnInit {
     setTimeout(() => {
       this.hideLoader()
       this.showTaskManagerContainer()
-    }, 1500)
+    }, 0)
   }
 
   showTaskManagerContainer() {

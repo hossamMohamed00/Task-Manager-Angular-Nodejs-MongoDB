@@ -2,14 +2,18 @@
   <h1 class="title has-text-primary">My Lists 📃</h1>
 
   <div class="list-menu">
-    <a
-      class="list-menu-item"
-      *ngFor="let list of lists"
-      [routerLink]="['/lists', list._id]"
-      routerLinkActive="is-active"
-    >
-      <p>{{ list.title }}</p>
-    </a>
+    <div class="lists" *ngIf="lists.length !== 0">
+      <a
+        class="list-menu-item"
+        *ngFor="let list of lists"
+        [routerLink]="['/lists', list._id]"
+        routerLinkActive="is-active"
+      >
+        <p>{{ list.title }}</p>
+      </a>
+    </div>
+
+    <h5 class="empty-state-text" *ngIf="lists.length === 0">No Lists 👀</h5>
   </div>
 
   <button

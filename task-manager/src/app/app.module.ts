@@ -11,7 +11,8 @@ import { ListViewComponent } from './components/list-view/list-view.component'
 import { TaskViewComponent } from './components/task-view/task-view.component'
 import { AddNewTaskComponent } from './components/add-new-task/add-new-task.component'
 import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/signup/signup.component'
+import { SignupComponent } from './components/signup/signup.component';
+import { EditListComponent } from './components/edit-list/edit-list.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SignupComponent } from './components/signup/signup.component'
     TaskViewComponent,
     AddNewTaskComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    EditListComponent
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [

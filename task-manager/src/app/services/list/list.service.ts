@@ -26,7 +26,29 @@ export class ListService {
     return this.httpRequestService.get('lists')
   }
 
+  /**
+   * @returns All available lists ids
+   */
   getListsId(): Observable<Object> {
     return this.httpRequestService.getSpecificField('lists', '_id')
+  }
+
+  /**
+   * @purpose : Update list data
+   * @param _listId -The list id to be updated
+   * @param newTitle - the updated title
+   */
+  updateList(_listId: string, newTitle: string): Observable<any> {
+    return this.httpRequestService.patch(`lists/${_listId}`, {
+      title: newTitle
+    })
+  }
+
+  /**
+   * @purpose - Delete the list by the list id provided
+   * @param _listId - The list id to be deleted
+   */
+  deleteList(_listId: string): Observable<any> {
+    return this.httpRequestService.delete(`lists/${_listId}`)
   }
 }

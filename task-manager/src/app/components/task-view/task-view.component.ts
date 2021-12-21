@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute, Params } from '@angular/router'
+import { ActivatedRoute, Params, Router } from '@angular/router'
 import { TaskService } from '../../services/task/task.service'
 import { Task } from '../../models/task.model'
+import { AuthService } from 'src/app/services/auth/auth.service'
+import { ListService } from 'src/app/services/list/list.service'
 @Component({
   selector: 'app-task-view',
   templateUrl: './task-view.component.html',
@@ -10,11 +12,15 @@ import { Task } from '../../models/task.model'
 export class TaskViewComponent implements OnInit {
   /* properties */
   tasks: Task[] = undefined!
+  currentListId: string = ''
 
   /* constructor */
   constructor(
     private taskService: TaskService,
-    private route: ActivatedRoute
+    private listService: ListService,
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +39,9 @@ export class TaskViewComponent implements OnInit {
 
       // If there are listId provided, so get its tasks
       if (listId) {
+        // Set the listId
+        this.currentListId = listId
+
         // Get all the tasks of this list
         this.taskService.getTasks(listId).subscribe((tasks: Task[]) => {
           this.tasks = tasks
@@ -50,6 +59,23 @@ export class TaskViewComponent implements OnInit {
     this.taskService.toggleComplete(task).subscribe(() => {
       // Toggle the completed value in the view
       task.completed = !task.completed
+    })
+  }
+
+  /**
+   * @purpose - This method will used to logout the user
+   */
+  onLogoutBtnClicked() {
+    this.authService.logout()
+  }
+
+  /**
+   * @purpose - This method delete a list
+   */
+  onDeleteListBtnClicked() {
+    this.listService.deleteList(this.currentListId).subscribe(() => {
+      console.log('List Deleted ❌')
+      this.router.navigate(['/lists'])
     })
   }
 }
