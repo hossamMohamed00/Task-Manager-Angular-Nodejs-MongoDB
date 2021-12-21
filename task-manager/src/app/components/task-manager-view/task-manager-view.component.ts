@@ -10,5 +10,24 @@ export class TaskManagerViewComponent implements OnInit {
   constructor() {}
 
   // A lifecycle hook that is called after Angular has initialized all data-bound properties of a directive.
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.hideLoader()
+      this.showTaskManagerContainer()
+    }, 1500)
+  }
+
+  showTaskManagerContainer() {
+    const taskManagerObj = document.getElementById('task-manager-view')
+    if (taskManagerObj) {
+      taskManagerObj.style.display = 'flex'
+    }
+  }
+
+  hideLoader() {
+    const loaderObj = document.getElementById('loading')
+    if (loaderObj) {
+      loaderObj.style.display = 'none'
+    }
+  }
 }
