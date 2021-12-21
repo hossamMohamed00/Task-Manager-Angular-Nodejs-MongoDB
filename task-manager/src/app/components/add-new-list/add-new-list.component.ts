@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { ListService } from '../../services/list/list.service'
+import { ListService } from '../../services/list.service'
 import { List } from '../../models/list.model'
 @Component({
   selector: 'app-add-new-list',

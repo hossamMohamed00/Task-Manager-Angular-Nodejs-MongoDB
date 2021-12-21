@@ -1,17 +1,60 @@
 @import '../../../main-styles.scss';
 
-.sidebar {
-  display: flex;
-  flex-direction: column;
+// small media query
+@include until($breakpoint) {
+  .sidebar {
+    display: none;
+    width: 90% !important;
+    margin: auto;
+    padding: 20px;
+    margin-bottom: 25px;
 
-  width: 250px;
-  background: white;
-  height: 100%;
-  padding: 42px;
-
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+    .ListsButtons {
+      margin-top: 15px;
+      & > button {
+        margin-bottom: 10px;
+        border-radius: 5px;
+      }
+      .AddListButton {
+        margin-right: 15px !important;
+      }
+      .DeleteListButton {
+        display: inline-block !important;
+      }
+      .viewTasksButton {
+        margin-right: 15px !important;
+      }
+    }
+  }
 }
+/* ********************************************************/
+
+// large media query
+
+@include from($breakpoint) {
+  .sidebar {
+    display: flex !important;
+    flex-direction: column;
+    width: 250px !important;
+    background: white;
+    height: 100%;
+    padding: 42px;
+
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+
+    .DeleteListButton,
+    .viewTasksButton {
+      display: none !important;
+    }
+    .ListsButtons {
+      float: left !important;
+    }
+  }
+}
+
+/* ********************************************************/
+// common styles between small & large
 
 .list-menu {
   display: flex;

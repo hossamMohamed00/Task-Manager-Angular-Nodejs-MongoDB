@@ -1,6 +1,6 @@
 import { List } from './../../models/list.model'
-import { Component, OnInit } from '@angular/core'
-import { ListService } from '../../services/list/list.service'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { ListService } from '../../services/list.service'
 
 @Component({
   selector: 'app-list-view',
@@ -13,6 +13,14 @@ export class ListViewComponent implements OnInit {
   canAddNewList: boolean = true
   // Define maximum number of list as static
   static MAXIMUM_LIST_SIZE_ALLOWED: number = 10
+
+  //display lists in small media
+  @Input() display_list_sm:string = "none"
+  @Output() display_list_sm_change:EventEmitter<string> = new EventEmitter<string>()
+
+   //display lists in small media
+   @Output() display_task_of_list_sm_change:EventEmitter<string> = new EventEmitter<string>()
+
 
   /* Constructor */
   constructor(private listService: ListService) {}
@@ -49,5 +57,16 @@ export class ListViewComponent implements OnInit {
     } else {
       this.canAddNewList = true
     }
+  }
+
+  // hide list in small media
+  hideList(){
+    this.display_list_sm = "none";
+    this.display_list_sm_change.emit("none");
+  }
+
+  // View all tasks that associated with list
+  ViewTasks(){
+    this.display_task_of_list_sm_change.emit("block !important");
   }
 }

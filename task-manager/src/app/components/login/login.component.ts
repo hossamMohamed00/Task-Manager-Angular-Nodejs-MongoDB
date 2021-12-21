@@ -1,6 +1,4 @@
-import { AuthService } from './../../services/auth/auth.service'
-import { Component, OnInit } from '@angular/core'
-import { HttpResponse } from '@angular/common/http'
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -8,15 +6,10 @@ import { HttpResponse } from '@angular/common/http'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {}
+  constructor() { }
 
-  onLoginButtonClicked(email: string, password: string) {
-    this.authService
-      .login(email, password)
-      .subscribe((res: HttpResponse<any>) => {
-        console.log('Logged In 🔥')
-      })
+  ngOnInit(): void {
   }
+
 }

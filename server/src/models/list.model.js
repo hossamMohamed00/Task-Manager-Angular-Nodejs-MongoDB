@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+
 // Create list schema
 const listSchema = new mongoose.Schema({
   title: {
@@ -6,10 +7,6 @@ const listSchema = new mongoose.Schema({
     minlength: 2,
     maxlength: 64,
     trim: true,
-    required: true
-  },
-  _userId: {
-    type: mongoose.Types.ObjectId,
     required: true
   }
 })

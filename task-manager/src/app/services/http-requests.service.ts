@@ -65,35 +65,4 @@ export class HttpRequestsService {
     const fullUrl = `${this.URL}/${uri}`
     return this.httpClient.delete(fullUrl)
   }
-
-  /*-----------Auth Requests----------------*/
-  /**
-   * @purpose - Send post request to the server to login the user
-   * @param email - User's email'
-   * @param password - User's password'
-   * @returns Observable
-   */
-  login(email: string, password: string) {
-    // Send the request
-    const fullUrl = `${this.URL}/users/login`
-    return this.httpClient.post(
-      fullUrl,
-      { email, password },
-      {
-        observe: 'response'
-      }
-    )
-  }
-
-  signup(name: string, email: string, password: string) {
-    // Send the request
-    const fullUrl = `${this.URL}/users/signup`
-    return this.httpClient.post(
-      fullUrl,
-      { name, email, password },
-      {
-        observe: 'response'
-      }
-    )
-  }
 }

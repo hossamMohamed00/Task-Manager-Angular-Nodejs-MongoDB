@@ -9,13 +9,6 @@ const jwtSecret = 'jsonwebtokensecret'
 
 // Create user schema
 const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    require: true,
-    minlength: 2,
-    maxlength: 64,
-    trim: true
-  },
   email: {
     type: String,
     required: true,

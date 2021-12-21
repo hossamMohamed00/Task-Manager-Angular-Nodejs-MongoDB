@@ -1,6 +1,5 @@
-<div class="sidebar has-background-white">
+<div class="sidebar has-background-white" [style.display]="display_list_sm">
   <h1 class="title has-text-primary">My Lists 📃</h1>
-
   <div class="list-menu">
     <a
       class="list-menu-item"
@@ -12,13 +11,27 @@
     </a>
   </div>
 
-  <button
-    class="button is-primary has-text-white"
-    routerLink="/add-new-list"
-    *ngIf="canAddNewList"
-  >
-    Add List 📃
-  </button>
+  <div class="ListsButtons">
+      <button
+      class="button is-primary has-text-white AddListButton"
+      routerLink="/add-new-list"
+      *ngIf="canAddNewList"
+      >
+      Add List 📃
+      </button>
+
+      <button class="button is-info has-text-white viewTasksButton" (click)="ViewTasks()"  >
+        View Tasks
+      </button>
+
+      <button class="button is-danger has-text-white DeleteListButton" (click)="hideList()"  >
+        Close Lists
+      </button>
+
+  </div>
+
+  <div style="clear: both"> </div>
+
 
   <button
     class="button is-danger has-text-white"
@@ -28,4 +41,5 @@
   >
     Maximum Reached ✋🏻
   </button>
+
 </div>

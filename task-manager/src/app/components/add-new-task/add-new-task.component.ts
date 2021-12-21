@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { Task } from 'src/app/models/task.model'
-import { TaskService } from 'src/app/services/task/task.service'
-import { ListService } from 'src/app/services/list/list.service'
+import { TaskService } from 'src/app/services/task.service'
+import { ListService } from 'src/app/services/list.service'
 
 @Component({
   selector: 'app-add-new-task',

@@ -1,29 +1,41 @@
 <div class="centered-content">
-  <div class="container" id="loading">
-    <div class="row">
-      <div id="loader">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="loading"></div>
-      </div>
+
+  <div class="container is-widescreen small-media is-tablet" style="display: none;">
+     <!-- small media-->
+    <h1 class="title is-3 has-text-primary" style="padding-top: 15%!important;"> Task Manager</h1>
+
+    <div class="card">
+      <img src="https://img.icons8.com/nolan/96/wish-list.png" class="imageList"/>
+
+      <header class="card-header">
+        <p class="card-header-title">
+          <span>View Lists </span>
+        </p>
+        <button class="card-header-icon" aria-label="more options" (click)="view_List_Sm()" >
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+        </button>
+      </header>
     </div>
+
   </div>
 
-  <div
-    class="task-manager-container"
-    id="task-manager-view"
-    style="display: none"
-  >
-    <!-- Add the list view component -->
-    <app-list-view></app-list-view>
+  <!-- ---------------------------------------------------------------------->
+  <!-- Large media-->
+  <div class="task-manager-container" >
+    <!--Add the list view component-->
+    <app-list-view
+      [display_list_sm]="display_lists"
+      (display_list_sm_change) = "display_lists=$event"
 
-    <!-- Add the task view component -->
-    <app-task-view></app-task-view>
+      (display_task_of_list_sm_change) = "display_task_of_list_sm = $event"
+    ></app-list-view>
+
+    <!--Add the task view component-->
+    <app-task-view
+      [display_task_sm]="display_task_of_list_sm"
+      (display_task_sm_change) = "display_task_of_list_sm=$event"
+    ></app-task-view>
   </div>
 </div>
