@@ -10,7 +10,8 @@ import { AddNewListComponent } from './components/add-new-list/add-new-list.comp
 import { ListViewComponent } from './components/list-view/list-view.component'
 import { TaskViewComponent } from './components/task-view/task-view.component'
 import { AddNewTaskComponent } from './components/add-new-task/add-new-task.component'
-import { LoginComponent } from './components/login/login.component'
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoginComponent } from './components/login/login.component'
     ListViewComponent,
     TaskViewComponent,
     AddNewTaskComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [

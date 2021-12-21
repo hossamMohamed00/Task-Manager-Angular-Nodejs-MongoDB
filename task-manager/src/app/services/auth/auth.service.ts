@@ -16,6 +16,30 @@ export class AuthService {
   ) {}
 
   /**
+   * @purpose - Signup new user
+   * @param name - User's name
+   * @param email- User's email
+   * @param password - User's password
+   */
+  signup(name: string, email: string, password: string) {
+    return this.httpRequestService.signup(name, email, password).pipe(
+      shareReplay(),
+      tap((res: HttpResponse<any>) => {
+        // Now, the authTokens available in the response header
+        // Store the auth tokens
+        const accessToken = res.headers.get('x-access-token')
+        const refreshToken = res.headers.get('x-refresh-token')
+
+        // SAve the session
+        this.setSession(res.body._id, accessToken, refreshToken)
+
+        // Navigate the user to the home page
+        this.router.navigate(['/lists'])
+      })
+    )
+  }
+
+  /**
    * @purpose - Try to login user and get his tokens
    * @param email - USer's email address
    * @param password - User's password'

@@ -4,7 +4,7 @@ import { TaskManagerViewComponent } from './components/task-manager-view/task-ma
 import { AddNewListComponent } from './components/add-new-list/add-new-list.component'
 import { AddNewTaskComponent } from './components/add-new-task/add-new-task.component'
 import { LoginComponent } from './components/login/login.component'
-
+import { SignupComponent } from './components/signup/signup.component'
 // Create routes
 const routes: Routes = [
   {
@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'signup',
+    component: SignupComponent
   },
   {
     // Setup it in the add-new-list page

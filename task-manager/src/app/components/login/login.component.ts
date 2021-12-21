@@ -17,8 +17,6 @@ export class LoginComponent implements OnInit {
       .login(email, password)
       .subscribe((res: HttpResponse<any>) => {
         console.log('Logged In 🔥')
-
-        console.log(res)
       })
   }
 }
