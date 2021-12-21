@@ -29,7 +29,7 @@ export class ListService {
   /**
    * @returns All available lists ids
    */
-  getListsId(): Observable<Object> {
+  getListsIds(): Observable<Object> {
     return this.httpRequestService.getSpecificField('lists', '_id')
   }
 

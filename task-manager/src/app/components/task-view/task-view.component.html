@@ -44,13 +44,38 @@
       (click)="onTaskClick(task)"
       [ngClass]="{ completed: task.completed }"
     >
-      <p class="task-text">{{ task.title }}</p>
+      <div class="task-text">
+        <p>{{ task.title }}</p>
+      </div>
+
+      <!--Task Buttons-->
+
+      <!--Edit task button-->
+      <div class="task-buttons">
+        <button
+          class="button"
+          style="margin-right: 10px"
+          [routerLink]="['/lists', currentListId, 'edit-task', task._id]"
+        >
+          <div class="icon">
+            <i class="fas fa-edit"></i>
+          </div>
+        </button>
+
+        <!--Delete task button-->
+        <button class="button is-danger" (click)="onDeleteTaskBtnClicked(task)">
+          <div class="icon">
+            <i class="fas fa-trash"></i>
+          </div>
+        </button>
+      </div>
     </div>
 
     <!--This heading will display if there is no task in the current list-->
     <h3 class="empty-state-text" *ngIf="tasks.length === 0">
       You have ZERO tasks, Go ahead and add your first task now.. 🤗🚴🏻‍♀️
     </h3>
+
     <!--Create Add Task button-->
     <button
       class="button circle-add-button is-primary"

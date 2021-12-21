@@ -12,7 +12,8 @@ import { TaskViewComponent } from './components/task-view/task-view.component'
 import { AddNewTaskComponent } from './components/add-new-task/add-new-task.component'
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { EditListComponent } from './components/edit-list/edit-list.component'
+import { EditListComponent } from './components/edit-list/edit-list.component';
+import { EditTaskComponent } from './components/edit-task/edit-task.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EditListComponent } from './components/edit-list/edit-list.component'
     AddNewTaskComponent,
     LoginComponent,
     SignupComponent,
-    EditListComponent
+    EditListComponent,
+    EditTaskComponent
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [

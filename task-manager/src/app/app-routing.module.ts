@@ -4,6 +4,7 @@ import { TaskManagerViewComponent } from './components/task-manager-view/task-ma
 import { AddNewListComponent } from './components/add-new-list/add-new-list.component'
 import { EditListComponent } from './components/edit-list/edit-list.component'
 import { AddNewTaskComponent } from './components/add-new-task/add-new-task.component'
+import { EditTaskComponent } from './components/edit-task/edit-task.component'
 import { LoginComponent } from './components/login/login.component'
 import { SignupComponent } from './components/signup/signup.component'
 // Create routes
@@ -45,6 +46,11 @@ const routes: Routes = [
     // Setup it in the add-new-list page
     path: 'lists/:listId/add-new-task',
     component: AddNewTaskComponent
+  },
+  {
+    // Setup it in the add-new-list page
+    path: 'lists/:listId/edit-task/:taskId',
+    component: EditTaskComponent
   }
 ]
 @NgModule({

@@ -55,9 +55,6 @@ export class AuthService {
 
         // SAve the session
         this.setSession(res.body._id, accessToken, refreshToken)
-
-        // Navigate the user to the home page
-        this.router.navigate(['/lists'])
       })
     )
   }

@@ -59,7 +59,7 @@ export class AddNewTaskComponent implements OnInit {
         - check if the listId is one of them
         - if not, redirect the user
       */
-    this.listService.getListsId().subscribe((listsIds: any) => {
+    this.listService.getListsIds().subscribe((listsIds: any) => {
       if (listsIds.filter((l: any) => l._id === listId).length == 0) {
         this.router.navigateByUrl('/lists')
       }

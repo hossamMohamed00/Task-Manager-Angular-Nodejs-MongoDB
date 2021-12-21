@@ -78,4 +78,16 @@ export class TaskViewComponent implements OnInit {
       this.router.navigate(['/lists'])
     })
   }
+
+  /**
+   * @purpose - Delete task
+   * @param taskId - The task to be deleted
+   */
+  onDeleteTaskBtnClicked(task: Task) {
+    this.taskService.deleteTask(task).subscribe(() => {
+      console.log('Task Deleted ❌')
+      // Remove the task from the tasks array
+      this.tasks = this.tasks.filter((t) => t._id !== task._id)
+    })
+  }
 }

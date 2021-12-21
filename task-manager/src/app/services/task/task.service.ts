@@ -19,6 +19,16 @@ export class TaskService {
   }
 
   /**
+   * @returns All available tasks ids
+   */
+  getTasksIds(listId: string): Observable<Object> {
+    return this.httpRequestService.getSpecificField(
+      `lists/${listId}/tasks`,
+      '_id'
+    )
+  }
+
+  /**
    * @purpose Create new task for specified list
    * @param listId : The list to add the task to it
    * @return: <Observable> of the new task
@@ -36,5 +46,31 @@ export class TaskService {
   toggleComplete(task: Task): Observable<any> {
     const uri = `lists/${task.listId}/tasks/${task._id}`
     return this.httpRequestService.patch(uri, { completed: !task.completed })
+  }
+
+  /**
+   * @purpose : Update task data
+   * @param _listId -The list id that the task belongs to
+   * @param _taskID -The task id to be updated
+   * @param newTitle - the updated title
+   */
+  updateTask(
+    _listId: string,
+    _taskId: string,
+    newTitle: string
+  ): Observable<any> {
+    return this.httpRequestService.patch(`lists/${_listId}/tasks/${_taskId}`, {
+      title: newTitle,
+      completed: false
+    })
+  }
+
+  /**
+   * @purpose - Delete task
+   * @param task -The task to be deleted
+   */
+  deleteTask(task: Task): Observable<any> {
+    const uri = `lists/${task.listId}/tasks/${task._id}`
+    return this.httpRequestService.delete(uri)
   }
 }
