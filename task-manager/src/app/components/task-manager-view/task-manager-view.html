@@ -1,19 +1,25 @@
 <div class="centered-content">
+  <!-- Loading-->
   <div class="container" id="loading">
     <div class="ring"></div>
     <div class="ring"></div>
     <div class="ring"></div>
   </div>
 
-  <div
-    class="task-manager-container"
-    id="task-manager-view"
-    style="display: none"
-  >
-    <!-- Add the list view component -->
-    <app-list-view></app-list-view>
+  <div id="task-manager-view"  style="display: none">
+      <div class="task-manager-container">
+        <!--Add the list view component-->
+        <app-list-view
+        (display_task_of_list_sm_change) = "display_task_of_list_sm = $event"
+        ></app-list-view>
 
-    <!-- Add the task view component -->
-    <app-task-view></app-task-view>
+        <!--Add the task view component-->
+        <app-task-view
+          [display_task_sm]="display_task_of_list_sm"
+          (display_task_sm_change) = "display_task_of_list_sm=$event"
+        ></app-task-view>
+
+    </div>
   </div>
+
 </div>

@@ -1,4 +1,4 @@
-<div class="sidebar has-background-white">
+ <div class="sidebar has-background-white">
   <h1 class="title has-text-primary">My Lists 📃</h1>
 
   <div class="list-menu">
@@ -16,14 +16,28 @@
     <h5 class="empty-state-text" *ngIf="lists.length === 0">No Lists 👀</h5>
   </div>
 
-  <button
-    class="button is-primary has-text-white"
+
+  <div class="ListsButtons">
+    <button
+    class="button is-primary has-text-white AddListButton"
     routerLink="/add-new-list"
     *ngIf="canAddNewList"
-  >
+    >
     Add List 📃
-  </button>
+    </button>
 
+    <button class="button is-info has-text-white viewTasksButton" (click)="ViewTasks()"  >
+      View Tasks
+    </button>
+
+
+  </div>
+
+  <div style="clear: both"> </div>
+
+
+
+  <!-- Maxmium reashed button-->
   <button
     class="button is-danger has-text-white"
     routerLink="/add-new-list"

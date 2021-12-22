@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { TaskService } from '../../services/task/task.service'
 import { Task } from '../../models/task.model'
@@ -13,6 +13,10 @@ export class TaskViewComponent implements OnInit {
   /* properties */
   tasks: Task[] = undefined!
   currentListId: string = ''
+
+    //display lists in small media
+    @Input() display_task_sm:string = ""
+    @Output() display_task_sm_change:EventEmitter<string> = new EventEmitter<string>()
 
   /* constructor */
   constructor(
@@ -90,4 +94,10 @@ export class TaskViewComponent implements OnInit {
       this.tasks = this.tasks.filter((t) => t._id !== task._id)
     })
   }
+
+      // hide list in small media
+      hideTask(){
+        this.display_task_sm = "none";
+        this.display_task_sm_change.emit("none");
+      }
 }

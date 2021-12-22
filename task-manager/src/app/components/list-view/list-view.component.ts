@@ -1,5 +1,5 @@
 import { List } from './../../models/list.model'
-import { Component, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { ListService } from '../../services/list/list.service'
 
 @Component({
@@ -14,6 +14,10 @@ export class ListViewComponent implements OnInit {
   // Define maximum number of list as static
   static MAXIMUM_LIST_SIZE_ALLOWED: number = 10
 
+  //display lists in small media
+  @Output() display_task_of_list_sm_change:EventEmitter<string> = new EventEmitter<string>()
+
+
   /* Constructor */
   constructor(private listService: ListService) {}
 
@@ -21,6 +25,7 @@ export class ListViewComponent implements OnInit {
   ngOnInit(): void {
     // Get all lists available
     this.showAvailableLists()
+
   }
 
   /* Helper Methods */
@@ -50,4 +55,10 @@ export class ListViewComponent implements OnInit {
       this.canAddNewList = true
     }
   }
+
+
+    // View all tasks that associated with list
+    ViewTasks(){
+      this.display_task_of_list_sm_change.emit("block !important");
+    }
 }

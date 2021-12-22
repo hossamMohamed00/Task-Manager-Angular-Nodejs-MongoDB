@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 
 @Component({
   selector: 'app-task-manager-view',
@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./task-manager-view.scss']
 })
 export class TaskManagerViewComponent implements OnInit {
+
+  // props from list view => to display tasks of this list
+  @Input() display_task_of_list_sm:string = "none"
+  @Output() display_sm_after_load:EventEmitter<string> = new EventEmitter<string>()
+
   /* constructor */
   constructor() {}
 
@@ -19,8 +24,9 @@ export class TaskManagerViewComponent implements OnInit {
 
   showTaskManagerContainer() {
     const taskManagerObj = document.getElementById('task-manager-view')
+
     if (taskManagerObj) {
-      taskManagerObj.style.display = 'flex'
+      taskManagerObj.style.display = 'block'
     }
   }
 
@@ -29,5 +35,8 @@ export class TaskManagerViewComponent implements OnInit {
     if (loaderObj) {
       loaderObj.style.display = 'none'
     }
+    //return true;
   }
+
+
 }
