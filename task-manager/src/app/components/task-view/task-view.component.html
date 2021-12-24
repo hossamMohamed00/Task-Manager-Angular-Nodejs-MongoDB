@@ -45,7 +45,7 @@
       [ngClass]="{ completed: task.completed }"
     >
       <div class="task-text">
-        <p>{{ task.title }}</p>
+        <p>{{ task.title | titlecase }}</p>
       </div>
 
       <!--Task Buttons-->

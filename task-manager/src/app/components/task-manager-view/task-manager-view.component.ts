@@ -35,7 +35,7 @@ export class TaskManagerViewComponent implements OnInit {
     if (loaderObj) {
       loaderObj.style.display = 'none'
     }
-    //return true;
+
   }
 
 

@@ -1,6 +1,8 @@
 import { List } from './../../models/list.model'
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { ListService } from '../../services/list/list.service'
+import { Router } from '@angular/router'
+
 
 @Component({
   selector: 'app-list-view',
@@ -11,6 +13,7 @@ export class ListViewComponent implements OnInit {
   /* properties */
   lists: List[] = []
   canAddNewList: boolean = true
+  canViewTasks: boolean = true
   // Define maximum number of list as static
   static MAXIMUM_LIST_SIZE_ALLOWED: number = 10
 
@@ -19,7 +22,8 @@ export class ListViewComponent implements OnInit {
 
 
   /* Constructor */
-  constructor(private listService: ListService) {}
+  constructor(private listService: ListService, private router: Router) {
+  }
 
   // A lifecycle hook that is called after Angular has initialized all data-bound properties of a directive.
   ngOnInit(): void {
@@ -27,6 +31,8 @@ export class ListViewComponent implements OnInit {
     this.showAvailableLists()
 
   }
+
+
 
   /* Helper Methods */
 
@@ -57,8 +63,16 @@ export class ListViewComponent implements OnInit {
   }
 
 
-    // View all tasks that associated with list
-    ViewTasks(){
+  // View all tasks that associated with list
+  ViewTasks(){
       this.display_task_of_list_sm_change.emit("block !important");
-    }
+  }
+
+  // Route to logout page
+  logout(){
+    this.router.navigate(['/login'])
+  }
+
+
+
 }

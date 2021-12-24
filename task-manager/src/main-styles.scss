@@ -78,14 +78,22 @@ body {
   padding: 35px;
   background: white;
   border-radius: 5px;
-  @include from($breakpoint) {
-    width: 350px;
-    max-width: 350px;
-  }
-  @include until($breakpoint) {
+
+  @include mobile {
     width: 90%;
     margin: auto;
     margin-top: 25vh !important;
+  }
+
+  @include tablet-only {
+    width: 40vw;
+    margin: auto;
+    margin-top: 25vh !important;
+  }
+  @include from($breakpoint) {
+    //width: 350px;
+    //max-width: 350px;
+    width: 40vw;
   }
 }
 

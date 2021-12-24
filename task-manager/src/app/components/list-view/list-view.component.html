@@ -1,5 +1,9 @@
- <div class="sidebar has-background-white">
+ <div class="sidebar has-background-white" >
   <h1 class="title has-text-primary">My Lists 📃</h1>
+
+  <button class="button is-danger has-text-white btn-logout" *ngIf="lists.length === 0" (click) = "logout()">
+    <i class="fas fa-sign-out-alt" style="padding: 5px;"></i>
+  </button>
 
   <div class="list-menu">
     <div class="lists" *ngIf="lists.length !== 0">
@@ -9,7 +13,8 @@
         [routerLink]="['/lists', list._id]"
         routerLinkActive="is-active"
       >
-        <p>{{ list.title }}</p>
+        <!-- Use built in pipes -->
+        <p> {{ list.title | customPipe}}</p>
       </a>
     </div>
 
@@ -26,7 +31,7 @@
     Add List 📃
     </button>
 
-    <button class="button is-info has-text-white viewTasksButton" (click)="ViewTasks()"  >
+    <button class="button is-info has-text-white viewTasksButton" (click)="ViewTasks()" *ngIf="lists.length !== 0" >
       View Tasks
     </button>
 
@@ -42,7 +47,7 @@
     class="button is-danger has-text-white"
     routerLink="/add-new-list"
     *ngIf="!canAddNewList"
-    disabled
+     disabled
   >
     Maximum Reached ✋🏻
   </button>

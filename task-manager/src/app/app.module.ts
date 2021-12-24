@@ -13,7 +13,8 @@ import { AddNewTaskComponent } from './components/add-new-task/add-new-task.comp
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { EditListComponent } from './components/edit-list/edit-list.component';
-import { EditTaskComponent } from './components/edit-task/edit-task.component'
+import { EditTaskComponent } from './components/edit-task/edit-task.component';
+import { CustomPipePipe } from './custom-pipe.pipe'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EditTaskComponent } from './components/edit-task/edit-task.component'
     LoginComponent,
     SignupComponent,
     EditListComponent,
-    EditTaskComponent
+    EditTaskComponent,
+    CustomPipePipe
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [
