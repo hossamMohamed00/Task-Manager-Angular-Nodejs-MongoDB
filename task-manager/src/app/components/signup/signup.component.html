@@ -37,6 +37,7 @@
           placeholder="Password 🔑"
           required
           #passwordInput
+          (keyup)="checkPasswordLength(passwordInput.value)"
         />
         <span class="icon is-small is-left">
           <i class="fas fa-lock"></i>
@@ -47,6 +48,7 @@
       <p class="control">
         <button
           class="button is-success has-text-white"
+          [disabled]="submitButton"
           (click)="
             onSignupButtonClick(
               nameInput.value,
@@ -58,8 +60,14 @@
           Sign up 📇
         </button>
       </p>
+
     </div>
 
+    <article class="message is-danger" *ngIf="errorMessage">
+      <div class="message-body">
+        Password must be more than 6 characters
+      </div>
+    </article>
     <!--Add link to login page-->
     <p class="has-text-grey">
       Already have account 💜, <a routerLink="/login">Login</a> now
