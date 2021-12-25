@@ -1,7 +1,9 @@
 import { List } from './../../models/list.model'
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { ListService } from '../../services/list/list.service'
 import { Router } from '@angular/router'
+import { AuthService } from 'src/app/services/auth/auth.service'
+
 
 
 @Component({
@@ -22,7 +24,7 @@ export class ListViewComponent implements OnInit {
 
 
   /* Constructor */
-  constructor(private listService: ListService, private router: Router) {
+  constructor(private listService: ListService, private router: Router , private authService: AuthService) {
   }
 
   // A lifecycle hook that is called after Angular has initialized all data-bound properties of a directive.
@@ -70,7 +72,7 @@ export class ListViewComponent implements OnInit {
 
   // Route to logout page
   logout(){
-    this.router.navigate(['/login'])
+    this.authService.logout()
   }
 
 
