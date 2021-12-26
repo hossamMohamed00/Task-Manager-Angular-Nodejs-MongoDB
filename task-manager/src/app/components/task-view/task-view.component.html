@@ -1,8 +1,16 @@
+<!-- Attribute Directives -->
 <div class="task-list-container has-background-light" [style.display]="display_task_sm">
   <!--Show this div if the user choose a list from the side bar-->
   <div *ngIf="tasks">
     <div class="top-bar">
       <h1 class="title has-text-primary">My Tasks</h1>
+      <button class="button is-danger has-text-white delete DeleteTask circle-add-button"
+        [style.display]="display_task_sm"
+        (click) = "hideTask()"
+
+        >
+
+      </button>
 
       <!--Options list-->
       <div class="dropdown is-hoverable is-right">
