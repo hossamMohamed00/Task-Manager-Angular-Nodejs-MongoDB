@@ -14,7 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { EditListComponent } from './components/edit-list/edit-list.component';
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
-import { CustomPipePipe } from './custom-pipe.pipe'
+import { CustomPipePipe } from './pipes/custom-pipe.pipe'
 
 @NgModule({
   declarations: [
