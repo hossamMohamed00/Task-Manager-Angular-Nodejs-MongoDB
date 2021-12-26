@@ -6,15 +6,7 @@ import {
   HttpRequest
 } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import {
-  catchError,
-  EMPTY,
-  empty,
-  Observable,
-  switchMap,
-  tap,
-  throwError
-} from 'rxjs'
+import { catchError, EMPTY, Observable, switchMap, tap, throwError } from 'rxjs'
 import { AuthService } from '../auth/auth.service'
 
 @Injectable({

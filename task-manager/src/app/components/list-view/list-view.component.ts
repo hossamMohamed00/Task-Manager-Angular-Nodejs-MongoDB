@@ -4,8 +4,6 @@ import { ListService } from '../../services/list/list.service'
 import { Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth/auth.service'
 
-
-
 @Component({
   selector: 'app-list-view',
   templateUrl: './list-view.component.html',
@@ -20,21 +18,21 @@ export class ListViewComponent implements OnInit {
   static MAXIMUM_LIST_SIZE_ALLOWED: number = 10
 
   //display lists in small media
-  @Output() display_task_of_list_sm_change:EventEmitter<string> = new EventEmitter<string>()
-
+  @Output() display_task_of_list_sm_change: EventEmitter<string> =
+    new EventEmitter<string>()
 
   /* Constructor */
-  constructor(private listService: ListService, private router: Router , private authService: AuthService) {
-  }
+  constructor(
+    private listService: ListService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   // A lifecycle hook that is called after Angular has initialized all data-bound properties of a directive.
   ngOnInit(): void {
     // Get all lists available
     this.showAvailableLists()
-
   }
-
-
 
   /* Helper Methods */
 
@@ -64,17 +62,13 @@ export class ListViewComponent implements OnInit {
     }
   }
 
-
   // View all tasks that associated with list
-  ViewTasks(){
-      this.display_task_of_list_sm_change.emit("block !important");
+  ViewTasks() {
+    this.display_task_of_list_sm_change.emit('block !important')
   }
 
   // Route to logout page
-  logout(){
+  logout() {
     this.authService.logout()
   }
-
-
-
 }
