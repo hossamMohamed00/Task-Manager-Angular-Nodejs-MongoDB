@@ -10,7 +10,7 @@ import { SignupComponent } from './components/signup/signup.component'
 // Create routes
 const routes: Routes = [
   {
-    // Redirect the user
+    // Redirect the user to the lists page
     path: '',
     redirectTo: 'lists',
     pathMatch: 'full'

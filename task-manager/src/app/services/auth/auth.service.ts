@@ -24,13 +24,14 @@ export class AuthService {
   signup(name: string, email: string, password: string) {
     return this.httpRequestService.signup(name, email, password).pipe(
       shareReplay(),
+      // tap == do
       tap((res: HttpResponse<any>) => {
         // Now, the authTokens available in the response header
         // Store the auth tokens
         const accessToken = res.headers.get('x-access-token')
         const refreshToken = res.headers.get('x-refresh-token')
 
-        // SAve the session
+        // Save the session
         this.setSession(res.body._id, accessToken, refreshToken)
 
         // Navigate the user to the home page
@@ -47,13 +48,14 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     return this.httpRequestService.login(email, password).pipe(
       shareReplay(),
+      // tap == do
       tap((res: HttpResponse<any>) => {
         // Now, the authTokens available in the response header
         // Store the auth tokens
         const accessToken = res.headers.get('x-access-token')
         const refreshToken = res.headers.get('x-refresh-token')
 
-        // SAve the session
+        // Save the session
         this.setSession(res.body._id, accessToken, refreshToken)
       })
     )
@@ -71,7 +73,7 @@ export class AuthService {
   }
 
   /**
-   * @purpose - This method is used to tru to generate new access token to the user
+   * @purpose - This method is used to generate new access token to the user
    * @returns New access token
    */
   getNewAccessToken() {
@@ -85,6 +87,7 @@ export class AuthService {
         observe: 'response'
       })
       .pipe(
+        // tap == do
         tap((res: HttpResponse<any>) => {
           this.setAccessToken(res.headers.get('x-access-token'))
         })

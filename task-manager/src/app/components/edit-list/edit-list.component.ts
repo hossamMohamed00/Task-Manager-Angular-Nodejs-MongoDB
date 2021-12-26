@@ -1,6 +1,5 @@
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { Component, OnInit } from '@angular/core'
-import { List } from 'src/app/models/list.model'
 import { ListService } from 'src/app/services/list/list.service'
 
 @Component({
@@ -24,7 +23,7 @@ export class EditListComponent implements OnInit {
       // Extract the params from the route - The param is defined as 'listId'
       const listId = params['listId']
 
-      /// Redirect the user to the home page if the listId is invalid
+      // Redirect the user to the home page if the listId is invalid
       this.redirectUserIfNoList(listId)
 
       // Set the list id
@@ -44,7 +43,8 @@ export class EditListComponent implements OnInit {
         - if not, redirect the user
       */
     this.listService.getListsIds().subscribe((listsIds: any) => {
-      if (listsIds.filter((l: any) => l._id === listId).length == 0) {
+      const matchedList = listsIds.filter((l: any) => l._id === listId)
+      if (matchedList.length == 0) {
         this.router.navigateByUrl('/lists')
       }
     })
@@ -56,7 +56,7 @@ export class EditListComponent implements OnInit {
   onUpdateBtnClicked(newTitle: string) {
     this.listService.updateList(this.currentListId, newTitle).subscribe(() => {
       // Navigate the user to the previous page with the same list id
-      this.router.navigate(['/lists'], { relativeTo: this.route })
+      this.router.navigateByUrl(`/lists/${this.currentListId}`)
     })
   }
 }

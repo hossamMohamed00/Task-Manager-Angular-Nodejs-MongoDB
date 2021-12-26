@@ -13,7 +13,7 @@ export class AddNewListComponent implements OnInit {
   // A lifecycle hook that is called after Angular has initialized all data-bound properties of a directive.
   ngOnInit(): void {}
 
-  createNewList(title: string = 'Title 🤷‍♀️'): void {
+  createNewList(title: string = 'Default Title 🤷‍♀️'): void {
     // Create the list
     this.listService.createList(title).subscribe((list: List) => {
       const uri = `/lists/${list._id}`

@@ -1,3 +1,7 @@
+/*
+  Interceptors transform the outgoing request before passing it to the next interceptor
+   in the chain, by calling next.handle(transformedReq). 
+*/
 import {
   HttpErrorResponse,
   HttpEvent,
@@ -22,10 +26,12 @@ export class RequestInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    // Handle the request
-    req = this.addAuthHeader(req)
+    // Append the auth header to the request
+    req = this.appendAccessTokenToReq(req)
 
+    // Handle the transformed request
     return next.handle(req).pipe(
+      // Catch ant errors on the response
       catchError((error: HttpErrorResponse) => {
         // Check if the user is unauthorized, redirect to login
         if (error.status === 401 && !this.refreshingAccessToken) {
@@ -33,21 +39,23 @@ export class RequestInterceptor implements HttpInterceptor {
           return this.refreshAccessToken().pipe(
             // switch to a new observable.
             switchMap(() => {
-              req = this.addAuthHeader(req)
+              req = this.appendAccessTokenToReq(req)
               return next.handle(req)
             }),
             catchError((error: any) => {
-              // Navigate to the login page
+              console.log('Something went wrong', error)
+
+              // Navigate to the login page by logout the user (remove his data from the local storage)
               this.authService.logout()
 
               //Just emits 'complete', and nothing else.
               return EMPTY
             })
           )
+        } else {
+          // Throw the error if it is not 401
+          return throwError(() => error)
         }
-
-        // Throw the error if it is not 401
-        return throwError(() => error)
       })
     )
   }
@@ -57,12 +65,16 @@ export class RequestInterceptor implements HttpInterceptor {
    * @param req The request object
    * @returns the request object with the access token in the header
    */
-  addAuthHeader(req: HttpRequest<any>) {
+  appendAccessTokenToReq(req: HttpRequest<any>) {
     // Get the access token
     const accessToken = this.authService.getAccessToken()
 
     if (accessToken) {
       // Add the token to the request
+      /* 
+      The clone() method's hash argument lets you mutate specific properties
+       of the request while copying the others.
+      */
       return req.clone({
         setHeaders: {
           'x-access-token': accessToken
@@ -80,6 +92,7 @@ export class RequestInterceptor implements HttpInterceptor {
   refreshAccessToken() {
     this.refreshingAccessToken = true
     return this.authService.getNewAccessToken().pipe(
+      // tap == do
       tap(() => {
         this.refreshingAccessToken = false
         console.log('Token Refreshed 💃🏻💃🏻')

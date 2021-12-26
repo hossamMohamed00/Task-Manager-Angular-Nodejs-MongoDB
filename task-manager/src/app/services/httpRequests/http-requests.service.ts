@@ -80,7 +80,9 @@ export class HttpRequestsService {
       fullUrl,
       { email, password },
       {
+        //Tell HttpClient that you want the full response with the observe option of the get() method
         observe: 'response'
+        //Now it returns an Observable of type HttpResponse rather than just the JSON data contained in the body
       }
     )
   }
@@ -92,7 +94,9 @@ export class HttpRequestsService {
       fullUrl,
       { name, email, password },
       {
+        //Tell HttpClient that you want the full response with the observe option of the get() method
         observe: 'response'
+        //Now it returns an Observable of type HttpResponse rather than just the JSON data contained in the body
       }
     )
   }
